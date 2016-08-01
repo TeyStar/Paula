@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circles</title>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.10.2/paper-full.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.0.0/howler.core.min.js"></script>
+	<script type="text/paperscript" canvas="myCanvas">
+
+	var circles = [];
+
+	function onKeyDown(event){
+		var maxPoint = new Point(view.size.width, view.size.height);
+		var randomPoint = Point.random();
+		var point = randomPoint * maxPoint;
+		var newCircle = new Path.Circle(view.size * Point.random(), 500)
+
+		if(event.key === "a"){
+			var sound = new Howl({
+				src: ['Sounds2/ailment.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#440000";
+		}
+
+		else if(event.key === "b"){
+			var sound = new Howl({
+				src: ['Sounds2/attack1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#880000";
+		}
+
+		else if(event.key === "c"){
+			var sound = new Howl({
+				src: ['Sounds2/bash.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#bb0000";
+		}
+
+		else if(event.key === "d"){
+			var sound = new Howl({
+				src: ['Sounds2/belch.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ff0000";
+		}
+
+		else if(event.key === "e"){
+			var sound = new Howl({
+				src: ['Sounds2/bump.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#004400";
+		}
+
+		else if(event.key === "f"){
+			var sound = new Howl({
+				src: ['Sounds2/buy1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#008800";
+		}
+
+		else if(event.key === "g"){
+			var sound = new Howl({
+				src: ['Sounds2/buy2.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#00bb00";
+		}
+
+		else if(event.key === "h"){
+			var sound = new Howl({
+				src: ['Sounds2/die.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#00ff00";
+		}
+
+		else if(event.key === "i"){
+			var sound = new Howl({
+				src: ['Sounds2/dodge.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#000044";
+		}
+
+		else if(event.key === "j"){
+			var sound = new Howl({
+				src: ['Sounds2/doorclose.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#000088";
+		}
+
+		else if(event.key === "k"){
+			var sound = new Howl({
+				src: ['Sounds2/eat.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#0000bb";
+		}
+
+		else if(event.key === "l"){
+			var sound = new Howl({
+				src: ['Sounds2/enemyattack.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#0000ff";
+		}
+
+		else if(event.key === "m"){
+			var sound = new Howl({
+				src: ['Sounds2/enemyhit.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#444400";
+		}
+
+		else if(event.key === "n"){
+			var sound = new Howl({
+				src: ['Sounds2/equip.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#888800";
+		}
+
+		else if(event.key === "o"){
+			var sound = new Howl({
+				src: ['Sounds2/fire2.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#bbbb00";
+		}
+
+		else if(event.key === "p"){
+			var sound = new Howl({
+				src: ['Sounds2/freeze1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ffff00";
+		}
+
+		else if(event.key === "q"){
+			var sound = new Howl({
+				src: ['Sounds2/freeze2.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#440044";
+		}
+
+		else if(event.key === "r"){
+			var sound = new Howl({
+				src: ['Sounds2/heal1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#880088";
+		}
+
+		else if(event.key === "s"){
+			var sound = new Howl({
+				src: ['Sounds2/heal2.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#bb00bb";
+		}
+
+		else if(event.key === "t"){
+			var sound = new Howl({
+				src: ['Sounds2/hypno.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ff00ff";
+		}
+
+		else if(event.key === "u"){
+			var sound = new Howl({
+				src: ['Sounds2/itemget1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#004444";
+		}
+
+		else if(event.key === "v"){
+			var sound = new Howl({
+				src: ['Sounds2/miss.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#008888";
+		}
+
+		else if(event.key === "w"){
+			var sound = new Howl({
+				src: ['Sounds2/mysterious.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#00bbbb";
+		}
+
+		else if(event.key === "x"){
+			var sound = new Howl({
+				src: ['Sounds2/okdesuka.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#00ffff";
+		}
+
+		else if(event.key === "y"){
+			var sound = new Howl({
+				src: ['Sounds2/phonehangup.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#444444";
+		}
+
+		else if(event.key === "z"){
+			var sound = new Howl({
+				src: ['Sounds2/phonering.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#888888";
+		}
+
+		else if(event.key === "1"){
+			var sound = new Howl({
+				src: ['Sounds2/pray.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#bbbbbb";
+		}
+
+		else if(event.key === "2"){
+			var sound = new Howl({
+				src: ['Sounds2/psi.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ffffff";
+		}
+
+		else if(event.key === "3"){
+			var sound = new Howl({
+				src: ['Sounds2/psi1.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#773333";
+		}
+
+		else if(event.key === "4"){
+			var sound = new Howl({
+				src: ['Sounds2/psi2.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#337733";
+		}
+
+		else if(event.key === "5"){
+			var sound = new Howl({
+				src: ['Sounds2/smaaash.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#333377";
+		}
+
+		else if(event.key === "6"){
+			var sound = new Howl({
+				src: ['Sounds2/smash.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#773377";
+		}
+
+		else if(event.key === "7"){
+			var sound = new Howl({
+				src: ['Sounds2/sphinx6.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#337777";
+		}
+
+		else if(event.key === "8"){
+			var sound = new Howl({
+				src: ['Sounds2/statsdown.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#777777";
+		}
+
+		else if(event.key === "9"){
+			var sound = new Howl({
+				src: ['Sounds2/statsup.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ffaaaa";
+		}
+
+		else if(event.key === "0"){
+			var sound = new Howl({
+				src: ['Sounds2/storm3.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#aaffaa";
+		}
+
+		else if(event.key === "M"){
+			var sound = new Howl({
+				src: ['Sounds2/strangepsi.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#aaaaff";
+		}
+
+		else if(event.key === "O"){
+			var sound = new Howl({
+				src: ['Sounds2/venus.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ffaaff";
+		}
+
+		else if(event.key === "T"){
+			var sound = new Howl({
+				src: ['Sounds2/wound.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#aaffff";
+		}
+
+		else if(event.key === "H"){
+			var sound = new Howl({
+				src: ['Sounds2/yell.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#ffffff";
+		}
+
+		else{
+			var sound = new Howl({
+				src: ['Sounds2/wow.wav']
+			});
+			sound.play();
+			newCircle.fillColor = "#abcdef";
+		}
+
+
+		circles.push(newCircle);
+	}
+
+	function onFrame(event){
+		for(var i=0; i < circles.length; i++){
+			circles[i].fillColor.hue += 1;
+			circles[i].scale(.9);
+			if(circles[i].area < 1){
+		      circles[i].remove();
+		      circles.splice(i, 1);
+		    }
+		}
+	}
+
+	</script>
+	<link rel="stylesheet" type="text/css" href="Paper2.css">
+
+</head>
+<body>
+	<canvas id="myCanvas"></canvas>
+</body>
+</html>
